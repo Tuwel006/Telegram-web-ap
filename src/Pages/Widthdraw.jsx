@@ -9,17 +9,17 @@ export default function Widthdraw() {
   const user = useContext(UserContext);
   const {updateTimeLeft} = useContext(UserContext);
   const {timeLeft} = useContext(UserContext)
-  //const time = 45*60*60*24*1000;
-  // const updateInterval = setInterval(() => {
-  //   updateTimeLeft();
 
-  //   if(timeLeft<=0){
-  //     clearInterval(updateInterval);
-  //   }
-  // },1000)
   useEffect(()=> {
-    updateTimeLeft();
-  })
+    const time = 45*60*60*24*1000;
+    const updateInterval = setInterval(() => {
+      updateTimeLeft();
+  
+      if(timeLeft<=0){
+        clearInterval(updateInterval);
+      }
+    },1000)
+  },[updateTimeLeft]);
   console.log("Time: "+timeLeft);
   
 
