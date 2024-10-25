@@ -10,7 +10,6 @@ export default function Widthdraw() {
   const {updateTimeLeft} = useContext(UserContext);
   const {timeLeft} = useContext(UserContext)
   //const time = 45*60*60*24*1000;
-  useEffect(()=>{
   const updateInterval = setInterval(() => {
     updateTimeLeft();
 
@@ -18,10 +17,12 @@ export default function Widthdraw() {
       clearInterval(updateInterval);
     }
   },1000)
-  },[updateTimeLeft])
+  console.log("Time: "+timeLeft);
+  
 
   //const time = user.timeLeft;
   const formatTime = (t) => {
+    console.log("Time in firmat: "+t)
     const days = Math.floor(t / (60 * 60 * 24));
     const hours = Math.floor((t % ( 60 * 60 * 24)) / (60 * 60));
     const minutes = Math.floor((t % (60 * 60)) / (60));
