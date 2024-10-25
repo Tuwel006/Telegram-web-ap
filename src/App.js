@@ -57,6 +57,7 @@ function App() {
                 token,
             });
             console.log("New user data stored successfully.");
+            window.location.reload();
         }
     } catch (error) {
         console.error("Error checking user data:", error);
@@ -80,7 +81,6 @@ function App() {
         // Save Telegram ID, username, and token to Firebase
         postData(telegramID, userName, token);
       }
-      window.location.reload();
       console.log("Cookies: "+Cookies.get('authToken'));
     }, []);
 

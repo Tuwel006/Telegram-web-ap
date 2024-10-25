@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
   const [levelReward, setLevelReward] = useState([]);
 
   // Retrieve telegramID from the URL parameters
-  const telegramID = Cookies.get('authToken');
+  const telegramID = Cookies.get('authToken') || new URLSearchParams(window.location.search).get('telegramID');
 
   useEffect(() => {
 
@@ -25,6 +25,12 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
     if (!telegramID) {
       return;
     } // Ensure telegramID is available
+
+    if(!Cookies.get('authToken')){
+      if(telegramID){
+        Cookies.set('authToken', telegramID, { expires: 45, sameSite: 'None', secure: true });
+      }
+    }
 
     const userRef = ref(database, `UserDb/${telegramID}`);
     const coinRef = ref(database, `UserDb/${telegramID}/coin`);
