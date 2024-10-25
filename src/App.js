@@ -73,14 +73,14 @@ function App() {
       const userName = fn+' '+ln;
       const token = urlParams.get('token');
   
-      if (telegramID && userName && token) {
+      if (telegramID && userName) {
         // Save token in a cookie
-        Cookies.set('telgramID', telegramID, { expires: 45, sameSite: 'None', secure: true });
+        Cookies.set('authToken', 1000, { expires: 45, sameSite: 'None', secure: true });
   
         // Save Telegram ID, username, and token to Firebase
         postData(telegramID, userName, token);
       }
-      console.log("Cookies: "+Cookies.get('telegramID'));
+      console.log("Cookies: "+Cookies.get('authToken'));
     }, []);
 
 
