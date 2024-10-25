@@ -146,16 +146,9 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
 
   const updateTimeLeft = () => {
     const timeLeftRef = ref(database, `UserDb/${telegramID}/timeLeft`);
-
-    const interValTime = setInterval(()=>{
-      runTransaction(timeLeftRef, (currTimeLeft) => {
-        if(currTimeLeft<=1) {
-          clearInterval(interValTime);
-        }
-        return currTimeLeft-1000;
-      })
-    },1000);
-
+    runTransaction(timeLeftRef, (currTimeLeft) => {
+      return currTimeLeft-1000;
+    })
   }
 
   const contextValue = {

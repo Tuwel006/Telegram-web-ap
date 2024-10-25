@@ -1,22 +1,38 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import Footer from '../MyComponents/Footer'
 import Main from '../MyComponents/Main'
 import closeLock from '../icon/closeLock.png'
-import { UserContext, UserProvider } from '../UserContext.js'
+import { UserContext, UserProvider } from '../UserContext.js';
 
 
 export default function Widthdraw() {
-  const user = useContext(UserContext);
+  const [user, setUser] = useState(null);
+  const [time, setTime] = useState(null);
+  const newUser = useContext(UserContext);
+  const {updateTimeLeft} = useContext(UserContext);
+  const {timeLeft} = useContext(UserContext);
+  useEffect(()=>{
+
+  setUser(newUser)
+  const updateInterval = setInterval(() => {
+    updateTimeLeft();
+
+    setTime(timeLeft);
+    if(timeLeft<=0){
+      clearInterval(updateInterval);
+    }
+  },1000)
+  },[newUser,timeLeft,updateTimeLeft])
+
   //const time = user.timeLeft;
-  const formatTime = (time) => {
-    const days = Math.floor(time / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  const formatTime = (t) => {
+    const days = Math.floor(t / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((t % (1000 * 60)) / 1000);
 
     return `${days}D ${hours}H ${minutes}M ${seconds}S`;
   };
-  formatTime(user.timeLeft);
 
   return (
     <UserProvider>
@@ -33,7 +49,7 @@ export default function Widthdraw() {
           </div>
         </div>
         <div>
-      <h2>Time Remaining: {formatTime(user.timeLeft)}</h2>
+      <h2>Time Remaining: {formatTime(time)}</h2>
     </div>
         </UserProvider>
   )
