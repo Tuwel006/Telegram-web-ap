@@ -10,7 +10,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => { // Fix: Destructure children correctly
   const [coin, setCoins] = useState(0);
   const [balance, setBalance] = useState(0);
-  const [name, setName] = useState("Sabbir Ali");
+  const [name, setName] = useState("");
   const [level, setLevel] = useState(1);
   const [levelPoints, setLevelPoints] = useState(0);
   const [maxPoints, setMaxPoints] = useState(100);
@@ -18,7 +18,6 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
 
   // Retrieve telegramID from the URL parameters
   const telegramID = Cookies.get('authToken');
-  console.log("Auth Token: "+telegramID);
 
   useEffect(() => {
 
