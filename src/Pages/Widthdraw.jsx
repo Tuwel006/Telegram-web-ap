@@ -6,23 +6,19 @@ import { UserContext, UserProvider } from '../UserContext.js';
 
 
 export default function Widthdraw() {
-  const [user, setUser] = useState(null);
-  const [time, setTime] = useState(null);
-  const newUser = useContext(UserContext);
+  const user = useContext(UserContext);
   const {updateTimeLeft} = useContext(UserContext);
-  const {timeLeft} = useContext(UserContext);
+  const {timeLeft} = useContext(UserContext)
+  //const time = 45*60*60*24*1000;
   useEffect(()=>{
-
-  setUser(newUser)
   const updateInterval = setInterval(() => {
     updateTimeLeft();
 
-    setTime(timeLeft);
     if(timeLeft<=0){
       clearInterval(updateInterval);
     }
   },1000)
-  },[newUser,timeLeft,updateTimeLeft])
+  },[updateTimeLeft])
 
   //const time = user.timeLeft;
   const formatTime = (t) => {
@@ -49,7 +45,7 @@ export default function Widthdraw() {
           </div>
         </div>
         <div>
-      <h2>Time Remaining: {formatTime(time)}</h2>
+      <h2>Time Remaining: {formatTime(timeLeft)}</h2>
     </div>
         </UserProvider>
   )
