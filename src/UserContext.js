@@ -147,7 +147,7 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
   const updateTimeLeft = () => {
     const timeLeftRef = ref(database, `UserDb/${telegramID}/timeLeft`);
     runTransaction(timeLeftRef, (currTimeLeft) => {
-      return currTimeLeft-1000;
+      return currTimeLeft-1;
     })
   }
 

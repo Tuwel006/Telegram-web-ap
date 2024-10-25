@@ -55,7 +55,7 @@ function App() {
                 maxPoints: 100,
                 levelReward: [],
                 token,
-                timeLeft: 45*24*60*60*1000
+                timeLeft: 45*24*60*60,
             });
             console.log("New user data stored successfully.");
             window.location.reload();

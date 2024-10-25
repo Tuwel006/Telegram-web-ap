@@ -22,10 +22,10 @@ export default function Widthdraw() {
 
   //const time = user.timeLeft;
   const formatTime = (t) => {
-    const days = Math.floor(t / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((t % (1000 * 60)) / 1000);
+    const days = Math.floor(t / (60 * 60 * 24));
+    const hours = Math.floor((t % ( 60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((t % (60 * 60)) / (60));
+    const seconds = Math.floor((t % (60)));
 
     return `${days}D ${hours}H ${minutes}M ${seconds}S`;
   };
