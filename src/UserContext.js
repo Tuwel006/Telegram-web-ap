@@ -159,6 +159,7 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
     levelPoints,
     maxPoints,
     levelReward,
+    timeLeft,
     updateCoins,
     updateBalance,
     updateLevelCheck,
