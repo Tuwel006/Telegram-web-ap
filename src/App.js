@@ -80,6 +80,7 @@ function App() {
         // Save Telegram ID, username, and token to Firebase
         postData(telegramID, userName, token);
       }
+      console.log("Cookies: "+Cookies.get('authToken'));
     }, []);
 
 
