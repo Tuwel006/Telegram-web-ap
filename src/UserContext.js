@@ -2,6 +2,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { database } from './firebase'; // Import Firebase configuration
 import { ref, onValue, runTransaction, get, set, push, update } from 'firebase/database';
+import Cookies from 'js-cookie'
 
 // Create User Context
 export const UserContext = createContext();
@@ -17,6 +18,8 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
 
   // Retrieve telegramID from the URL parameters
   const telegramID = new URLSearchParams(window.location.search).get('telegramID') || 'Unknown User';
+  const authToken = Cookies.get('authToken');
+  console.log("Auth Token: "+authToken);
 
   useEffect(() => {
     if (!telegramID) {
