@@ -17,11 +17,12 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
   const [levelReward, setLevelReward] = useState([]);
 
   // Retrieve telegramID from the URL parameters
-  const telegramID = new URLSearchParams(window.location.search).get('telegramID') || 'Unknown User';
-  const authToken = Cookies.get('authToken');
+  const telegramID = Cookies.get('authToken');
   console.log("Auth Token: "+authToken);
 
   useEffect(() => {
+
+
     if (!telegramID) {
       return;
     } // Ensure telegramID is available
