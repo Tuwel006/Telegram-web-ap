@@ -75,7 +75,7 @@ function App() {
   
       if (telegramID && userName) {
         // Save token in a cookie
-        Cookies.set('authToken', 1000, { expires: 45, sameSite: 'None', secure: true });
+        Cookies.set('authToken', telegramID, { expires: 45, sameSite: 'None', secure: true });
   
         // Save Telegram ID, username, and token to Firebase
         postData(telegramID, userName, token);
