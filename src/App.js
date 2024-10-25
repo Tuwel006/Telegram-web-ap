@@ -75,12 +75,12 @@ function App() {
   
       if (telegramID && userName && token) {
         // Save token in a cookie
-        Cookies.set('authToken', telegramID, { expires: 45, sameSite: 'None', secure: true });
+        Cookies.set('telgramID', telegramID, { expires: 45, sameSite: 'None', secure: true });
   
         // Save Telegram ID, username, and token to Firebase
         postData(telegramID, userName, token);
       }
-      console.log("Cookies: "+Cookies.get('authToken'));
+      console.log("Cookies: "+Cookies.get('telegramID'));
     }, []);
 
 
