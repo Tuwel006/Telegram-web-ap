@@ -52,7 +52,7 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
     });
 
     const unsubscribeName = onValue(nameRef, (snapshot) => {
-      setName(snapshot.val() || "User");
+      setName(snapshot.val() || "");
     });
 
     const unsubscribeLevel = onValue(levelRef, (snapshot) => {
@@ -138,6 +138,20 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
     
   };
 
+  const updateTimeLeft = () => {
+    const timeLeftRef = ref(database, `UserDb/${telegramID}/timeLeft`);
+
+    const interValTime = setInterval(()=>{
+      runTransaction(timeLeftRef, (currTimeLeft) => {
+        if(currTimeLeft<=1) {
+          clearInterval(interValTime);
+        }
+        return currTimeLeft-1000;
+      })
+    },1000);
+
+  }
+
   const contextValue = {
     coin,
     balance,
@@ -149,6 +163,7 @@ export const UserProvider = ({ children }) => { // Fix: Destructure children cor
     updateCoins,
     updateBalance,
     updateLevelCheck,
+    updateTimeLeft,
   };
 
   return (
